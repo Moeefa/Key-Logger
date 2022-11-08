@@ -1,9 +1,5 @@
-try:
-  import discord  
-  from pynput import keyboard
-except:
-  import os
-  os.system("pip install pynput discord")
+import discord  
+from pynput import keyboard
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
